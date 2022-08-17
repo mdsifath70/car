@@ -1,0 +1,1245 @@
+@import './reset';
+@import './typography';
+@import './variables';
+
+// base
+*,
+::before,
+::after {
+    font-family: $font;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: $body-bg;
+    color: $body-clr;
+}
+
+#main {
+    position: relative;
+    overflow-x: hidden;
+}
+
+$container-padding-x: 20px;
+// layout
+.container {
+    padding: 0 $container-padding-x;
+    @media (min-width: map-get($breakpoints, sm)) {
+        max-width: 90vmax;
+    }
+}
+
+.section__space-t {
+    margin-top: 12rem;
+    @media (max-width: map-get($breakpoints, sm)) {
+        margin-top: 10rem;
+    }
+    @media (max-width: map-get($breakpoints, xs)) {
+        margin-top: 8rem;
+    }
+}
+
+// reusable
+// utils
+label[for] {
+    cursor: pointer;
+}
+
+.brands {
+    display: flex;
+    gap: 0.875rem;
+    .brand {
+        background-color: rgba($clr-17, 30%);
+        font-size: 15px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 2px;
+        &.--2 {
+            background-color: rgba($clr-6, 50%);
+        }
+    }
+}
+
+// btns
+.primary__btn {
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 1.75rem;
+    @media (max-width: map-get($breakpoints, sm)) {
+        font-size: 17px;
+    }
+    img {
+        pointer-events: none;
+        @media (max-width: map-get($breakpoints, sm)) {
+            width: 1.65rem;
+        }
+    }
+}
+
+// extends
+%subtitle {
+    font-size: 15px;
+    font-weight: 700;
+    @media (max-width: map-get($breakpoints, sm)) {
+        font-size: 14px;
+    }
+}
+
+%title {
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    @media (max-width: map-get($breakpoints, lg)) {
+        font-size: 1.875rem;
+        margin-bottom: 2.25rem;
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+        font-size: 1.5rem;
+        margin-bottom: 2.15rem;
+    }
+}
+
+%para {
+    font-size: 1.25rem;
+    font-weight: 300;
+    @media (max-width: map-get($breakpoints, lg)) {
+        font-size: 1.15rem;
+    }
+    @media (max-width: map-get($breakpoints, sm)) {
+        font-size: 1.05rem;
+    }
+}
+
+input,
+textarea {
+    background-color: $clr-21;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    padding: 1.125rem 1.625rem;
+    display: block;
+    width: 100%;
+    &::placeholder {
+        color: rgba($clr-22, 25%);
+    }
+    &:required + label::after {
+        content: '*';
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+        padding: 1rem 1.5rem;
+    }
+    @media (max-width: map-get($breakpoints, xs)) {
+        padding: 0.65rem 1.35rem;
+    }
+}
+
+textarea {
+    resize: vertical;
+    min-height: 3rem;
+}
+
+.input__group {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    margin-bottom: 0.938rem;
+    label {
+        color: rgba($white, 90%);
+        font-weight: 500;
+    }
+}
+
+input[type='submit'] {
+    background-color: $clr-17;
+    color: $white;
+    font-size: 1.25rem;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 0.938rem;
+    cursor: pointer;
+    @media (max-width: map-get($breakpoints, md)) {
+        font-size: 1.15rem;
+    }
+    @media (max-width: map-get($breakpoints, sm)) {
+        font-size: 15px;
+    }
+}
+
+.overlay__text {
+    font-family: $font-3;
+    color: rgba($body-clr, 5%);
+    font-size: 23.125rem;
+    position: absolute;
+    transform: translateY(10%);
+    pointer-events: none;
+    user-select: none;
+    @media (max-width: map-get($breakpoints, lg)) {
+        font-size: 16rem;
+        transform: translateY(35%);
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+        font-size: 14rem;
+    }
+    @media (max-width: map-get($breakpoints, sm)) {
+        font-size: 10rem;
+    }
+    @media (max-width: map-get($breakpoints, xsm)) {
+        transform: translateY(70%);
+        font-size: 8rem;
+    }
+    @media (max-width: map-get($breakpoints, xs2)) {
+        transform: translateY(100%);
+        font-size: 7rem;
+    }
+}
+
+// slider
+.slider__wrapper {
+    margin-top: 6.875rem;
+    @media (max-width: map-get($breakpoints, sm)) {
+        margin-top: 4rem;
+    }
+    .swiper {
+        .swiper-slide {
+            display: flex;
+            gap: 1.625rem;
+            @media (min-width: map-get($breakpoints, xl)) and (max-width: map-get($breakpoints, xxl)) {
+                flex-direction: column;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                flex-direction: column;
+            }
+            @media (min-width: map-get($breakpoints, md)) and(max-width: map-get($breakpoints, xl)) {
+                text-align: left;
+            }
+            .play__box {
+                position: relative;
+                width: 40%;
+                @media (max-width: map-get($breakpoints, md)) {
+                    margin: 0 auto;
+                }
+                @media (max-width: map-get($breakpoints, sm)) {
+                    width: 70%;
+                }
+                @media (max-width: map-get($breakpoints, xs2)) {
+                    width: 100%;
+                }
+                img:not(.play__btn) {
+                    border-radius: 0.875rem;
+                    width: 100%;
+                    height: 100%;
+                }
+                .play__btn {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    cursor: pointer;
+                }
+            }
+            .subtitle {
+                @extend %subtitle;
+            }
+            .title {
+                @extend %title;
+            }
+        }
+    }
+    // slider controllers
+    .slider__controllers {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 1rem;
+        margin-top: 1.375rem;
+        @media (max-width: map-get($breakpoints, md)) {
+            margin-top: 1.15rem;
+        }
+        .swiper-pagination {
+            position: relative;
+            width: auto;
+            bottom: auto;
+            color: rgba($body-clr, 50%);
+            font-size: 1.75rem;
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 1.25rem;
+            }
+            .swiper-pagination-current {
+                color: $body-clr;
+                font-size: 3.375rem;
+                @media (max-width: map-get($breakpoints, md)) {
+                    font-size: 2.25rem;
+                }
+            }
+        }
+        .btns {
+            display: flex;
+            column-gap: 2.25rem;
+            @media (max-width: map-get($breakpoints, md)) {
+                column-gap: 1.5rem;
+            }
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            position: relative;
+            width: auto;
+            margin: 0;
+            top: auto;
+            left: 0;
+            right: 0;
+            &::after {
+                content: '';
+                font-size: 1rem;
+                background: center center / contain no-repeat;
+            }
+        }
+        .swiper-button-prev {
+            &::after {
+                width: 27px;
+                height: 33px;
+                background-image: url('../img/arrow-left.svg');
+                @media (max-width: map-get($breakpoints, md)) {
+                    width: 20px;
+                }
+            }
+        }
+        .swiper-button-next {
+            &::after {
+                width: 38px;
+                height: 40px;
+                background-image: url('../img/arrow-right.svg');
+                @media (max-width: map-get($breakpoints, md)) {
+                    width: 25px;
+                }
+            }
+        }
+    }
+}
+
+// header
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    transition: 0.25s;
+    &.scroll {
+        background-color: $white;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    nav,
+    .nav__tok {
+        display: flex;
+        column-gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+    nav {
+        padding: 2.5rem 0;
+        position: relative;
+        transition: 0.25s;
+        @media (max-width: map-get($breakpoints, lg)) {
+            padding: 1.5rem 0;
+        }
+    }
+    &.scroll {
+        nav {
+            padding: 1rem 0;
+        }
+    }
+    .logo {
+        flex-basis: 15%;
+        @media (max-width: map-get($breakpoints, lg)) {
+            img {
+                width: 7vmax;
+            }
+        }
+    }
+    .nav__tok {
+        flex: 1;
+        @media (max-width: map-get($breakpoints, lg)) {
+            background-color: $white;
+            padding: 1.25rem;
+            border-radius: 0.25rem;
+            visibility: hidden;
+            opacity: 0;
+            flex-direction: column;
+            row-gap: 0.9rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: 0.25s;
+            &.show {
+                visibility: visible;
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+        .nav__menu {
+            display: flex;
+            column-gap: 22px;
+            @media (max-width: map-get($breakpoints, lg)) {
+                width: 100%;
+                flex-direction: column;
+                row-gap: 0.9rem;
+            }
+            li {
+                @media (max-width: map-get($breakpoints, lg)) {
+                    border-bottom: 1px solid $black;
+                }
+                a {
+                    display: block;
+                    color: $black;
+                    font-size: 15px;
+                    font-weight: 500;
+                    padding: 1rem 1.5rem;
+                    cursor: pointer;
+                    &:hover {
+                        font-weight: 700;
+                    }
+                    @media (max-width: map-get($breakpoints, lg)) {
+                        padding: 0.25rem 0;
+                    }
+                    @media (max-width: map-get($breakpoints, sm)) {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .search__form {
+            position: relative;
+            @media (max-width: map-get($breakpoints, lg)) {
+                margin-right: auto;
+            }
+            input,
+            button {
+                background-color: transparent;
+                border: none;
+                outline: none;
+            }
+            input {
+                padding-bottom: 0.25rem;
+                padding-right: 1rem;
+                border-bottom: 1px solid rgba($clr-17, 30%);
+            }
+            button {
+                padding: 0;
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                transform: translateY(-50%);
+            }
+        }
+    }
+    .nav__menu-btn {
+        width: 60px;
+        height: 60px;
+        place-items: center;
+        border-radius: 50%;
+        background-color: $white;
+        cursor: pointer;
+        display: none;
+        @media (max-width: map-get($breakpoints, lg)) {
+            display: grid;
+            width: 6vmax;
+            height: 6vmax;
+            svg {
+                width: 50%;
+            }
+        }
+    }
+}
+
+// hero section
+.hero__section {
+    position: relative;
+    padding-top: 13vmax;
+    @media (max-width: map-get($breakpoints, xl)) {
+        padding-top: 16vmax;
+    }
+    .overlay__bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        right: 0;
+        border-radius: 1rem;
+        border-top-right-radius: 0;
+        z-index: -1;
+        @media (min-width: map-get($breakpoints, xl)) {
+            width: 38%;
+            background-image: linear-gradient(rgba($clr-6, 30%), rgba($clr-8, 30%));
+        }
+        .text__box {
+            position: absolute;
+            bottom: 0;
+            width: 25vmax;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            transform: translateY(calc(100% - 27px));
+            @media (max-width: map-get($breakpoints, xl)) {
+                visibility: hidden;
+                opacity: 0;
+            }
+            p {
+                font-size: 1.25rem;
+                font-weight: 300;
+            }
+            .arrow__left,
+            .arrow__right {
+                position: absolute;
+            }
+            .arrow__left {
+                left: -75px;
+                top: -25px;
+            }
+            .arrow__right {
+                right: -50px;
+                bottom: -25px;
+            }
+        }
+    }
+    .hero__container {
+        padding-left: $container-padding-x;
+        @media (min-width: map-get($breakpoints, sm)) {
+            padding-left: 5vmax;
+        }
+    }
+    .luxury {
+        @media (max-width: map-get($breakpoints, xl)) {
+            padding-right: 5vmax;
+            text-align: center;
+            .brands {
+                justify-content: center;
+            }
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            padding-right: $container-padding-x;
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            .brands .brand {
+                font-size: 14px;
+            }
+        }
+        .title {
+            font-family: $font-2;
+            margin: 0.9rem 0 2.5rem;
+            font-size: 54px;
+            line-height: 1.3;
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            @media (max-width: map-get($breakpoints, sm)) {
+                font-size: 2rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        .para {
+            font-size: 1.25rem;
+            @media (max-width: map-get($breakpoints, sm)) {
+                font-size: 17px;
+            }
+        }
+        .primary__btn {
+            margin-top: 3.75rem;
+            @media (max-width: map-get($breakpoints, sm)) {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+    .luxury__car {
+        position: relative;
+        padding-bottom: 3rem;
+        @media (max-width: map-get($breakpoints, xl)) {
+            padding-top: 3rem;
+        }
+        .overlay__bg {
+            width: 64%;
+            background-image: linear-gradient(rgba($clr-6, 30%), rgba($clr-8, 30%));
+            @media (min-width: map-get($breakpoints, xl)) {
+                display: none;
+            }
+            @media (max-width: map-get($breakpoints, sm)) {
+                width: 69%;
+            }
+            .text__box {
+                visibility: visible;
+                opacity: 1;
+                @media (max-width: map-get($breakpoints, sm)) {
+                    width: 35vmax;
+                    transform: translate(-20%, calc(100% - 27px));
+                }
+                @media (max-width: map-get($breakpoints, xs2)) {
+                    width: 100%;
+                }
+                p {
+                    font-size: 1.1rem;
+                    @media (max-width: map-get($breakpoints, sm)) {
+                        font-size: 15px;
+                    }
+                }
+            }
+        }
+        .img__box {
+            img {
+                display: block;
+                margin-left: auto;
+                pointer-events: none;
+                user-select: none;
+            }
+        }
+    }
+}
+
+// Services
+.services {
+    position: relative;
+    .line__y,
+    .line__x {
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+        user-select: none;
+    }
+    .line__y {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .line__x {
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .middle__car {
+        background-color: $clr-20;
+        width: 14.25rem;
+        height: 14.25rem;
+        margin: 7rem auto;
+        border-radius: 50%;
+        pointer-events: none;
+        user-select: none;
+        @media (max-width: map-get($breakpoints, md)) {
+            display: flex;
+            width: 12rem;
+            height: 12rem;
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            margin: 6rem auto;
+        }
+        img {
+            max-width: none;
+            border-radius: 10rem;
+            @media (max-width: map-get($breakpoints, md)) {
+                width: 15rem;
+            }
+        }
+    }
+    .service__row {
+        [class*='col-'] {
+            @media (min-width: map-get($breakpoints, xl)) {
+                &:first-of-type {
+                    .service {
+                        padding-right: 5rem;
+                    }
+                }
+            }
+            &:last-of-type {
+                .service {
+                    @media (min-width: map-get($breakpoints, lg)) {
+                        display: flex;
+                        justify-content: flex-end;
+                    }
+                    @media (min-width: map-get($breakpoints, xl)) {
+                        padding-left: 5rem;
+                    }
+                }
+            }
+        }
+    }
+    .service {
+        position: relative;
+        .icon__img {
+            width: 3.125rem;
+            pointer-events: none;
+            user-select: none;
+            @media (max-width: map-get($breakpoints, lg)) {
+                width: 2rem;
+            }
+        }
+        .title {
+            font-size: 21px;
+            font-weight: 600;
+            margin: 1.5rem 0 1.875rem;
+            @media (max-width: map-get($breakpoints, lg)) {
+                margin: 1.25rem 0 1.5rem;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 1.25rem;
+                margin: 1rem 0 1.25rem;
+            }
+        }
+        .para {
+            font-size: 1.25rem;
+            @media (max-width: map-get($breakpoints, lg)) {
+                font-size: 1.15rem;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 1rem;
+            }
+        }
+    }
+}
+
+// luxury cars
+.luxury__cars {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    @media (min-width: map-get($breakpoints, xl)) {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+    @media (min-width: map-get($breakpoints, lg)) {
+        grid-template-columns: 1fr 1fr;
+    }
+    @media (max-width: map-get($breakpoints, lg)) {
+        max-width: 60vmax;
+        margin: auto;
+    }
+    .car__card {
+        padding: 10px;
+        border-radius: 0.5rem;
+        &:nth-child(1) {
+            background-color: rgba($clr-17, 10%);
+            @media (min-width: map-get($breakpoints, xl)) {
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
+        }
+        &:nth-child(2) {
+            background-color: rgba($clr-7, 10%);
+            grid-row-start: 1;
+            grid-column-start: 2;
+            grid-column-end: -1;
+        }
+        &:nth-child(3) {
+            background-color: rgba($clr-8, 10%);
+            @media (min-width: map-get($breakpoints, xl)) {
+                grid-column-start: 2;
+                grid-column-end: -1;
+            }
+        }
+        .img__box {
+            height: 100%;
+            img {
+                border-radius: 0.5rem;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .card__body {
+            padding: 2.25rem;
+            @media (max-width: map-get($breakpoints, lg)) {
+                padding: 2.15rem;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                padding: 2rem;
+            }
+            @media (max-width: map-get($breakpoints, sm)) {
+                padding: 1rem;
+            }
+            .subtitle {
+                @extend %subtitle;
+            }
+            .title {
+                @extend %title;
+                margin-top: 0.5rem;
+            }
+            .para {
+                @extend %para;
+                margin-bottom: 3.5rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    margin-bottom: 3rem;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    margin-bottom: 2.5rem;
+                }
+            }
+        }
+    }
+}
+
+// luxury interior
+.luxury__interior {
+    $space-x: 2.5;
+    $space-x-2: 2;
+    .slider__wrapper {
+        margin-top: 0;
+        margin-right: ($space-x * 2) + rem;
+        @media (max-width: map-get($breakpoints, lg)) {
+            margin-right: 1rem;
+        }
+    }
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+    .subtitle {
+        @extend %subtitle;
+    }
+    .title {
+        @extend %title;
+        margin: 0.875rem 0 2.375rem;
+    }
+    .para {
+        @extend %para;
+    }
+    .img__box {
+        img {
+            border-radius: 1rem;
+            width: 100%;
+        }
+    }
+    .card {
+        position: relative;
+        height: 100%;
+        margin-left: $space-x + rem;
+        padding-left: $space-x + rem;
+        @media (max-width: map-get($breakpoints, lg)) {
+            margin-left: 0;
+            padding-left: $space-x-2 + rem;
+        }
+        &::before {
+            content: '';
+            width: 1px;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            background-image: radial-gradient($clr-17 100%, $clr-17 0%);
+            position: absolute;
+        }
+        .icon--sub {
+            img {
+                width: 2.85rem;
+                pointer-events: none;
+                user-select: none;
+            }
+        }
+        .clients__lists {
+            display: flex;
+            margin-top: 2.625rem;
+            img {
+                @media (max-width: map-get($breakpoints, lg)) {
+                    width: 2.625rem;
+                }
+                &:not(:first-of-type) {
+                    margin-left: -1.25rem;
+                }
+            }
+        }
+    }
+}
+
+// Contact
+.contact__sec {
+    position: relative;
+    background: url('../img/bg.jpg') center center / cover fixed no-repeat;
+    color: $white;
+    padding: 3.375rem 0;
+    border-radius: 1.563rem;
+    overflow: hidden;
+    z-index: 1;
+    &::before {
+        content: '';
+        background-color: rgba($black, 50%);
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+    .contact__info {
+        .subtitle {
+            @extend %subtitle;
+        }
+        .title {
+            @extend %title;
+            margin: 0.875rem 0 2.375rem;
+        }
+        .para {
+            @extend %para;
+        }
+    }
+    .contact__form {
+        background-image: linear-gradient(rgba($clr-23, 20%), rgba($clr-24, 20%) 46%);
+        padding: 2.5rem 2.813rem;
+        border-radius: 9px;
+        backdrop-filter: blur(5px);
+        @media (max-width: map-get($breakpoints, lg)) {
+            padding: 2.25rem 2.5rem;
+        }
+        @media (max-width: map-get($breakpoints, md)) {
+            padding: 2rem 2.25rem;
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            padding: 1.5rem 2rem;
+        }
+    }
+}
+
+// Luxury cars lists
+.luxury__cars-lists {
+    position: relative;
+    .cars__lists {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        @media (max-width: map-get($breakpoints, lg)) {
+            gap: 2.25rem;
+        }
+        @media (max-width: map-get($breakpoints, md)) {
+            gap: 2rem;
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            gap: 1.5rem;
+        }
+        li {
+            display: flex;
+            align-items: center;
+            .number__counter {
+                color: rgba($body-clr, 50%);
+                font-size: 1.5rem;
+                display: inline-flex;
+                align-items: baseline;
+                gap: 2px;
+                min-width: 8rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    min-width: 7rem;
+                    font-size: 1.25rem;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    min-width: 6rem;
+                    font-size: 1rem;
+                }
+                .count {
+                    color: $body-clr;
+                    font-size: 3rem;
+                    font-weight: 500;
+                    @media (max-width: map-get($breakpoints, lg)) {
+                        font-size: 2.5rem;
+                    }
+                    @media (max-width: map-get($breakpoints, md)) {
+                        font-size: 2.25rem;
+                    }
+                    @media (max-width: map-get($breakpoints, sm)) {
+                        font-size: 2rem;
+                    }
+                }
+            }
+            p {
+                font-size: 1.375rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    font-size: 1.25rem;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    font-size: 1rem;
+                }
+            }
+            &:hover {
+                p {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    .cars__gallery {
+        $gap: 1.5rem;
+        $gap-2: 1.25rem;
+        $gap-3: 1rem;
+        $gap-4: 0.5rem;
+        display: grid;
+        grid-template-columns: 0.8fr 1fr;
+        gap: $gap;
+        @media (max-width: map-get($breakpoints, lg)) {
+            gap: $gap-2;
+        }
+        @media (max-width: map-get($breakpoints, md)) {
+            gap: $gap-3;
+        }
+        @media (max-width: map-get($breakpoints, sm)) {
+            gap: $gap-4;
+        }
+        .single__part {
+            position: relative;
+            flex: 1;
+            &:nth-child(1) {
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
+            &:nth-child(2) {
+                grid-column-start: 2;
+                grid-column-end: -1;
+            }
+            &:last-of-type {
+                display: flex;
+                gap: $gap;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    gap: $gap-2;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    gap: $gap-3;
+                }
+                @media (max-width: map-get($breakpoints, sm)) {
+                    gap: $gap-4;
+                }
+            }
+            .overlay {
+                background-color: rgba($black, 37%);
+                position: absolute;
+                inset: 0;
+                border-radius: 9px;
+                visibility: hidden;
+                opacity: 0;
+                transition: 0.5s;
+                &,
+                a {
+                    display: grid;
+                    place-items: center;
+                }
+                a {
+                    width: 100%;
+                    height: 100%;
+                    color: $white;
+                    font-size: 1.5rem;
+                    @media (max-width: map-get($breakpoints, lg)) {
+                        font-size: 1.25rem;
+                    }
+                    @media (max-width: map-get($breakpoints, md)) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+            &:hover:not(.no--hover) {
+                .overlay {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+            .img__box {
+                &,
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                img {
+                    border-radius: 9px;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
+
+// Footer
+.footer {
+    position: relative;
+    background-image: linear-gradient(rgba($clr-6, 30%), rgba($clr-8, 30%));
+    padding: 6.25rem 0 4.5rem;
+    .footer__top {
+        text-align: center;
+        .subtitle {
+            font-size: 2rem;
+            font-weight: 600;
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 1.5rem;
+            }
+            @media (max-width: map-get($breakpoints, sm)) {
+                font-size: 1.25rem;
+            }
+        }
+        .title {
+            font-family: $font-2;
+            font-size: 3.375rem;
+            line-height: 1.3;
+            margin: 2.375rem 0 3rem;
+            @media (max-width: map-get($breakpoints, lg)) {
+                font-size: 3.25rem;
+                margin: 2.25rem 0 2.65rem;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                font-size: 3rem;
+                margin: 2rem 0 2.25rem;
+            }
+            @media (max-width: map-get($breakpoints, sm)) {
+                font-size: 2rem;
+                margin: 1.5rem 0 2rem;
+            }
+        }
+        .search__box {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            @media (max-width: map-get($breakpoints, md)) {
+                gap: 1rem;
+            }
+            .input__search {
+                position: relative;
+                display: flex;
+                label {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 1.5rem;
+                    @media (max-width: map-get($breakpoints, sm)) {
+                        left: 1rem;
+                    }
+                }
+                input {
+                    border-radius: 2.375rem;
+                    padding: 1.25rem 2rem;
+                    padding-left: 4.85rem;
+                    @media (min-width: map-get($breakpoints, md)) {
+                        min-width: 20rem;
+                    }
+                    @media (min-width: map-get($breakpoints, lg)) {
+                        min-width: 28.875rem;
+                    }
+                    @media (max-width: map-get($breakpoints, sm)) {
+                        padding-top: 0.5rem;
+                        padding-bottom: 0.5rem;
+                        padding-left: 4rem;
+                    }
+                }
+            }
+            input[type='submit'] {
+                width: auto;
+                font-size: 19px;
+                padding-left: 3.5rem;
+                padding-right: 3.5rem;
+                border-radius: 2.375rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    font-size: 17px;
+                    padding-left: 3rem;
+                    padding-right: 3rem;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    font-size: 14px;
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+            }
+        }
+    }
+    .footer__bottom {
+        position: relative;
+        margin-top: 1.313rem;
+        .footer__img {
+            @media (max-width: map-get($breakpoints, lg)) {
+                margin: 2rem 0;
+            }
+            @media (max-width: map-get($breakpoints, md)) {
+                margin: 1rem 0;
+            }
+            img {
+                transition: 0.5s ease;
+                @media (max-width: map-get($breakpoints, md)) {
+                    max-width: 85%;
+                }
+                @media (max-width: map-get($breakpoints, sm)) {
+                    max-width: 90%;
+                }
+            }
+        }
+        .container {
+            @media (min-width: map-get($breakpoints, lg)) {
+                padding-right: 5.5vmax;
+            }
+        }
+        .foot__box-wrapper {
+            position: relative;
+            @media (min-width: map-get($breakpoints, md)) {
+                margin-top: 5rem;
+            }
+        }
+        .foot__box {
+            color: $black;
+            font-weight: 500;
+            .title {
+                font-size: 1.563rem;
+                margin-bottom: 1.875rem;
+                @media (max-width: map-get($breakpoints, md)) {
+                    font-size: 1.35rem;
+                }
+            }
+            .menus {
+                display: flex;
+                flex-direction: column;
+                gap: 1.25rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    gap: 1.15rem;
+                }
+                @media (max-width: map-get($breakpoints, sm)) {
+                    gap: 1rem;
+                }
+                li {
+                    a {
+                        font-size: 1.25rem;
+                        @media (max-width: map-get($breakpoints, md)) {
+                            font-size: 1rem;
+                        }
+                        &:hover {
+                            text-decoration: underline;
+                            text-underline-offset: 5px;
+                        }
+                    }
+                }
+            }
+        }
+        .foot__bottom {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 2.375rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 2.625rem;
+            padding-top: 1.125rem;
+            border-top: 1px solid rgba($clr-17, 50%);
+            @media (min-width: map-get($breakpoints, md)) {
+                margin-left: -3.625rem;
+            }
+            .socials {
+                display: flex;
+                gap: 2.375rem;
+                @media (max-width: map-get($breakpoints, lg)) {
+                    gap: 2rem;
+                }
+                @media (max-width: map-get($breakpoints, md)) {
+                    gap: 1rem;
+                }
+                li {
+                    a {
+                        width: 1.875rem;
+                        height: 1.875rem;
+                        padding: 0.5rem;
+                        background-color: $white;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+}
