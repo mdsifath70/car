@@ -189,7 +189,7 @@ input[type='submit'] {
         font-size: 10rem;
     }
     @media (max-width: map-get($breakpoints, xsm)) {
-        transform: translateY(70%);
+        transform: translateY(80%);
         font-size: 8rem;
     }
     @media (max-width: map-get($breakpoints, xs2)) {
@@ -613,6 +613,9 @@ input[type='submit'] {
         z-index: -1;
         pointer-events: none;
         user-select: none;
+        img {
+            max-width: none;
+        }
     }
     .line__y {
         top: 50%;
@@ -620,9 +623,9 @@ input[type='submit'] {
         transform: translate(-50%, -50%);
     }
     .line__x {
-        left: 0;
+        left: 50%;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translate(-50%, -50%);
     }
     .middle__car {
         background-color: $clr-20;
