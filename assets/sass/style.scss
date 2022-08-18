@@ -294,27 +294,38 @@ input[type='submit'] {
             right: 0;
             &::after {
                 content: '';
+                width: 38px;
+                height: 40px;
                 font-size: 1rem;
-                background: center center / contain no-repeat;
-            }
-        }
-        .swiper-button-prev {
-            &::after {
-                width: 27px;
-                height: 33px;
-                background-image: url('../img/arrow-left.svg');
+                background: url('../img/arrow-right.svg') center center / contain no-repeat;
                 @media (max-width: map-get($breakpoints, md)) {
-                    width: 20px;
+                    width: 25px;
                 }
             }
         }
+        .swiper-button-prev {
+            &:not(.swiper-button-disabled)::after {
+                transform: rotate(180deg);
+            }
+        }
         .swiper-button-next {
-            &::after {
-                width: 38px;
-                height: 40px;
-                background-image: url('../img/arrow-right.svg');
-                @media (max-width: map-get($breakpoints, md)) {
-                    width: 25px;
+            &.swiper-button-disabled {
+                &::after {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            &.swiper-button-disabled {
+                opacity: 1;
+                &::after {
+                    width: 27px;
+                    height: 33px;
+                    background-image: url('../img/arrow-left.svg');
+                    @media (max-width: map-get($breakpoints, md)) {
+                        width: 20px;
+                    }
                 }
             }
         }
@@ -751,6 +762,7 @@ input[type='submit'] {
                 border-radius: 0.5rem;
                 width: 100%;
                 height: 100%;
+                object-fit: cover;
             }
         }
         .card__body {

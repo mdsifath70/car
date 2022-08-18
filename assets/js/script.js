@@ -18,9 +18,7 @@ navMenuBtn.addEventListener('click', function () {
 // swiper
 function swiperSlider() {
     const swiper = new Swiper('.swiper', {
-        loop: true,
         spaceBetween: 15,
-        autoplay: true,
         pagination: {
             el: '.swiper-pagination',
             type: 'fraction',
